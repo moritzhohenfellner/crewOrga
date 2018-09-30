@@ -12,7 +12,7 @@ body {
 #login .container #login-row #login-column #login-box {
   margin-top: 120px;
   max-width: 600px;
-  height: 320px;
+  height: 360px;
   border: 1px solid #9C9C9C;
   background-color: #EAEAEA;
   margin-left: auto;
@@ -82,7 +82,8 @@ label{
             <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
 
             <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="form-control btn btn-lg btn-primary btn-block"/>
-            <a id="_register" href="{{path("fos_user_registration_register")}}" class="btn btn-block btn-dark">Registrieren</a>
+
+            <a id="_register" href="{{path("fos_user_registration_register")}}" class="btn btn-dark btn-block">Registrieren</a>
           </form>
 
 
