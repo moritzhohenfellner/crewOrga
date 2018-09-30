@@ -30,10 +30,13 @@ body {
   padding: 50px;
 }
 #_submit{
-  margin-top: 25px;
+  margin-top: 15px;
+}
+#_register{
+  margin-top: 15px;
 }
 label{
-  margin-top: 25px;
+  margin-top: 15px;
 }
 .btn-primary{
   margin: 0 auto;
@@ -70,7 +73,7 @@ label{
             {% endif %}
 
             <label for="username" class="sr-only">{{ 'security.login.username'|trans }}</label>
-            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" class="form-control" placeholder="{{ 'security.login.username'|trans }}"/>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" class="form-control" placeholder="{{ 'profile.show.email'|trans }}"/>
 
             <label for="password" class="sr-only">{{ 'security.login.password'|trans }}</label>
             <input type="password" id="password" name="_password" required="required" autocomplete="current-password" class="form-control" placeholder="{{ 'security.login.password'|trans }}"/>
@@ -79,6 +82,7 @@ label{
             <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
 
             <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="form-control btn btn-lg btn-primary btn-block"/>
+            <a id="_register" href="{{path("fos_user_registration_register")}}" class="btn btn-block btn-dark">Registrieren</a>
           </form>
 
 
