@@ -28,12 +28,46 @@ class ToernController extends AbstractController
       $entityManager = $this->getDoctrine()->getManager();
       $entityManager->persist($toern);
       $entityManager->flush();
-      return $this->redirectToRoute('index');
+      $flashbag = $this->get('session')->getFlashBag();
+      $flashbag->add("success", "Törn wurde erstellt");
+      return $this->redirectToRoute('toern_list');
     }
 
     return $this->render('toern/createToern.html.twig', [
       'controller_name' => 'ToernController',
       'form' => $form->createView(),
     ]);
+  }
+
+  /**
+  * @Route("/toern/", name="toern_list")
+  */
+  public function list(){
+    $toerns = $this->getUser()->getToerns();
+    return $this->render('toern/listToerns.html.twig', ['toerns' => $toerns]);
+  }
+
+  /**
+  * @Route("/toern/delete/{toernId}", name="toern_delete")
+  */
+  public function delete($toernId){
+    $entityManager = $this->getDoctrine()->getManager();
+    $toern = $entityManager->find(Toern::class, $toernId);
+    // Retrieve flashbag from the controller
+    $flashbag = $this->get('session')->getFlashBag();
+
+    //check permission
+    if(!$toern->checkPermission('delete', $this->getUser())){
+      $flashbag->add("error", "Keine Berechtigung diesen Törn zu löschen!");
+      return $this->redirectToRoute('toern_list');
+    }else{
+      $entityManager->remove($toern);
+      $entityManager->flush();
+      $flashbag->add("success", "Törn gelöscht");
+    }
+
+
+
+    return $this->redirectToRoute('toern_list');
   }
 }

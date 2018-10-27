@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.standalone.css" />
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+<table class="table">
+  <tr>
+    <th>Fahrtgebiet</th>
+    <th>Von</th>
+    <th>Bis</th>
+  </tr>
+  {% for toern in toerns %}
+<tr>
+  <td>{{toern.Destination}}</td>
+  <td>{{toern.fromDate|date('d.m.Y')}}</td>
+  <td>{{toern.toDate|date('d.m.Y')}}</td>
+  <td><a class="btn btn-primary" href="{{path("toern_delete", {'toernId': toern.Id})}}">Törn Löschen</a></td>
+</tr>
+{% endfor %}
+</table>
+
+<a class="btn btn-primary" href="{{path("toern_create")}}">Neuen Törn erstellen</a>
+</div>
+{% endblock %}
