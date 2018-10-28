@@ -18,7 +18,7 @@ class ToernType extends AbstractType
             ->add('fromDate', DateType::class, array('widget' => 'single_text', 'label' => 'Von', 'html5' => false, 'attr' => ['class' => 'js-datepicker']))
             ->add('toDate', DateType::class, array('widget' => 'single_text', 'label' => 'Bis', 'html5' => false, 'attr' => ['class' => 'js-datepicker']))
             ->add('Destination', TextType::class, array('label' => 'Fahrtgebiet'))
-            ->add('save', SubmitType::class, array('label' => 'Törn anlegen'))
+            ->add('save', SubmitType::class, array('label' => 'speichern', 'attr' => ['class' => 'btn-primary']))
         ;
     }
 

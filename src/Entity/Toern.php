@@ -92,6 +92,8 @@ class Toern
 
     public function checkPermission(string $task, User $user){
       switch($task){
+
+
         case 'delete':
           if($user == $this->OwningUser){
             return true;
@@ -99,6 +101,17 @@ class Toern
             return false;
           }
           break;
+
+
+        case 'edit-core-data':
+        if($user == $this->OwningUser){
+          return true;
+        }else{
+          return false;
+        }
+        break;
+
+        
       }
       return false;
     }

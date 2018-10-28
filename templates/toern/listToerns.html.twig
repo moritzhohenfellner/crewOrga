@@ -1,11 +1,6 @@
 {% extends 'base.html.twig' %}
 
 
-
-{% block stylesheets %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.standalone.css" />
-{% endblock %}
-
 {% block body %}
 
 <div class="container">
@@ -18,10 +13,11 @@
   </tr>
   {% for toern in toerns %}
 <tr>
-  <td>{{toern.Destination}}</td>
+  <td><a href="{{path("toern_edit", {'toernId': toern.Id})}}">{{toern.Destination}}</a></td>
   <td>{{toern.fromDate|date('d.m.Y')}}</td>
   <td>{{toern.toDate|date('d.m.Y')}}</td>
-  <td><a class="btn btn-primary" href="{{path("toern_delete", {'toernId': toern.Id})}}">Törn Löschen</a></td>
+  <td><a class="btn btn-primary" href="{{path("toern_edit", {'toernId': toern.Id})}}">Törn bearbeiten</a></td>
+  <td><a class="confirmation btn btn-danger" href="{{path("toern_delete", {'toernId': toern.Id})}}">Törn Löschen</a></td>
 </tr>
 {% endfor %}
 </table>
