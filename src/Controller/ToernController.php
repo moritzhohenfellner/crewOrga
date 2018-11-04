@@ -40,7 +40,7 @@ class ToernController extends AbstractController
   }
 
   /**
-  * @Route("/toern/edit/{toernId}", name="toern_edit")
+  * @Route("/toern/{toernId}/edit/", name="toern_edit")
   */
   public function edit(Request $request, $toernId){
     $entityManager = $this->getDoctrine()->getManager();
@@ -83,7 +83,7 @@ class ToernController extends AbstractController
   }
 
   /**
-  * @Route("/toern/delete/{toernId}", name="toern_delete")
+  * @Route("/toern/{toernId}/delete/", name="toern_delete")
   */
   public function delete($toernId){
     $entityManager = $this->getDoctrine()->getManager();

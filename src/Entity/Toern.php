@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,16 @@ class Toern
      * @ORM\Column(type="text")
      */
     private $Destination;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Share", mappedBy="Toern", orphanRemoval=true)
+     */
+    private $shares;
+
+    public function __construct()
+    {
+        $this->shares = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -111,8 +123,47 @@ class Toern
         }
         break;
 
-        
+        case 'view-crew-list':
+        if($user == $this->OwningUser){
+          return true;
+        }else{
+          return false;
+        }
+        break;
+
+
       }
       return false;
+    }
+
+    /**
+     * @return Collection|Share[]
+     */
+    public function getShares(): Collection
+    {
+        return $this->shares;
+    }
+
+    public function addShare(Share $share): self
+    {
+        if (!$this->shares->contains($share)) {
+            $this->shares[] = $share;
+            $share->setToern($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShare(Share $share): self
+    {
+        if ($this->shares->contains($share)) {
+            $this->shares->removeElement($share);
+            // set the owning side to null (unless already changed)
+            if ($share->getToern() === $this) {
+                $share->setToern(null);
+            }
+        }
+
+        return $this;
     }
 }

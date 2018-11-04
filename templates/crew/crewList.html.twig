@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<div class="container">
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Vorname</th>
+  </tr>
+  {% for member in toern.shares %}
+<tr>
+  <td>{{member.user.firstName}}</td>
+  <td>{{member.user.surName}}<td>
+</tr>
+{% endfor %}
+</table>
+
+</div>
+{% endblock %}
